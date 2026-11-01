@@ -203,6 +203,7 @@ img{max-width:100%;display:block}
 }
 @media(min-width:1000px){
   .setup{grid-template-columns:minmax(0,1fr) minmax(0,470px);gap:52px;align-items:start}
+  .intro-col{align-self:stretch}
   .setup-intro{position:sticky;top:40px}
   .setup-card{padding:28px}
 }
