@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090d">
+<title>Challenge Tracker</title>
+<meta name="description" content="Plan a custom daily challenge, then check in each day from a calendar heatmap. Track streaks, notes and progress photos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script src="./quotes.js" defer></script>
+<script src="./presets.js" defer></script>
+<script src="./app.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="brandmark" aria-hidden="true">✓</span><span>Challenge Tracker</span></div>
+    <div class="topbar-actions">
+      <button class="quiet-button" id="settingsBtn" type="button" hidden>Challenge settings</button>
+    </div>
+  </header>
+
+  <section class="setup" id="setupView" hidden>
+    <div class="setup-intro">
+      <p class="eyebrow" id="setupEyebrow">New challenge</p>
+      <h1 class="title" id="setupTitle">Build your challenge.</h1>
+      <p class="lede" id="setupLede">Choose how many days you are committing to, then write the rules that make a day count.</p>
+      <ul class="setup-notes">
+        <li>Any length works — 7 days or 100.</li>
+        <li>Your rules, your definition of a good day.</li>
+        <li>Everything stays on this device.</li>
+      </ul>
+    </div>
+
+    <form class="setup-card" id="setupForm" novalidate>
+      <div class="form-grid">
+        <label class="field">
+          <span>Challenge name</span>
+          <input id="formName" maxlength="50" autocomplete="off" placeholder="e.g. 30 days of morning runs">
+        </label>
+        <div class="form-row">
+          <label class="field">
+            <span>Start date</span>
+            <input id="formDate" type="date" required>
+          </label>
+          <label class="field">
+            <span>Custom days</span>
+            <input id="formDuration" type="number" min="1" max="365" step="1" required>
+          </label>
+        </div>
+        <div class="field">
+          <span>Duration</span>
+          <div class="chips" id="durationChips" role="group" aria-labelledby="durationLabelText">
+            <span class="sr-only" id="durationLabelText">Duration</span>
+            <button class="chip" type="button" data-days="7">7</button>
+            <button class="chip" type="button" data-days="21">21</button>
+            <button class="chip" type="button" data-days="30">30</button>
+            <button class="chip" type="button" data-days="75">75</button>
+            <button class="chip" type="button" data-days="90">90</button>
+            <span class="chip-note">Pick a preset or type any number of days.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-heading">
+        <div>
+          <strong>Daily rules</strong>
+          <p>Each one becomes a daily checkbox.</p>
+        </div>
+        <button type="button" class="text-button" id="addRule">+ Add rule</button>
+      </div>
+      <div id="ruleFields" class="rule-fields"></div>
+      <div class="ideas">
+        <span class="ideas-label">Ideas</span>
+        <div class="ideas-chips" id="ideaChips">
+          <button type="button" class="idea-chip" data-rule="Move 30 minutes">Move 30 minutes</button>
+          <button type="button" class="idea-chip" data-rule="Read 10 pages">Read 10 pages</button>
+          <button type="button" class="idea-chip" data-rule="Drink a gallon of water">Drink a gallon of water</button>
+          <button type="button" class="idea-chip" data-rule="No sugar">No sugar</button>
+          <button type="button" class="idea-chip" data-rule="Sleep 8 hours">Sleep 8 hours</button>
+          <button type="button" class="idea-chip" data-rule="Journal 5 minutes">Journal 5 minutes</button>
+        </div>
+      </div>
+
+      <p class="error" id="formError" role="alert" aria-live="polite"></p>
+
+      <div class="setup-actions">
+        <button class="save-button" type="submit" id="setupSubmit">Start challenge</button>
+        <button class="quiet-button" type="button" id="setupCancel" hidden>Cancel</button>
+      </div>
+      <button class="text-button danger setup-new" type="button" id="newChallenge" hidden>Start a new challenge</button>
+    </form>
+
+    <section class="guide" aria-labelledby="guideTitle">
+      <div class="guide-head">
+        <p class="eyebrow">Rule library</p>
+        <h2 id="guideTitle">Start from a proven set.</h2>
+        <p class="guide-lede">Load a preset and every rule arrives with its own instructions. Edit anything afterwards — the presets are starting points, not orders.</p>
+      </div>
+      <div class="presets" id="presets"></div>
+      <div class="tips">
+        <div class="tips-head">
+          <h3>How to keep up</h3>
+          <p>Five habits that decide whether the rules survive a bad week.</p>
+        </div>
+        <ol class="tip-list" id="tipList"></ol>
+      </div>
+    </section>
+  </section>
+
+  <section class="dash" id="dashView" hidden>
+    <section class="intro">
+      <div>
+        <p class="eyebrow" id="challengeLabel"></p>
+        <h1 class="title" id="challengeTitle"></h1>
+        <p class="lede" id="challengeDetail"></p>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="streak">0</strong><small>day streak</small></div>
+        <div class="stat"><strong id="finished">0</strong><small>days completed</small></div>
+      </div>
+    </section>
+
+    <section class="progress-block" aria-labelledby="progressCaption">
+      <div class="progress-caption"><span id="progressCaption">The long game</span><span id="percent">0%</span></div>
+      <div class="track"><div class="fill" id="progressFill"></div></div>
+      <p class="progress-note" id="progressNote"></p>
+    </section>
+
+    <main class="main-grid">
+      <section class="wall">
+        <div class="wall-head">
+          <div>
+            <h2>Every day counts.</h2>
+            <p>Choose a day to check in.</p>
+          </div>
+          <button class="today-button" id="goToday" type="button"><span class="today-main">Check in for today</span><span class="today-sub" id="todaySub"></span></button>
+        </div>
+        <div class="legend">
+          <span class="done"><i></i><span>Complete</span></span>
+          <span class="active"><i></i><span>In progress</span></span>
+          <span><i></i><span>Upcoming</span></span>
+          <span class="missed"><i></i><span>Missed</span></span>
+        </div>
+        <div id="calendar"></div>
+      </section>
+    </main>
+
+    <section class="quote-block" aria-labelledby="quoteLabel">
+      <p class="eyebrow" id="quoteLabel">Today's fuel</p>
+      <blockquote class="quote-text" id="quoteText"></blockquote>
+      <div class="quote-foot">
+        <p class="quote-author" id="quoteAuthor"></p>
+        <button class="text-button" id="quoteNext" type="button">Another quote</button>
+      </div>
+    </section>
+  </section>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true" tabindex="-1">
+  <div class="grab" aria-hidden="true"></div>
+  <div class="sheet-top">
+    <div class="arrows">
+      <button class="icon-button" id="prevDay" type="button" aria-label="Previous day">‹</button>
+      <button class="icon-button" id="nextDay" type="button" aria-label="Next day">›</button>
+    </div>
+    <button class="icon-button" id="closeSheet" type="button" aria-label="Close">×</button>
+  </div>
+  <p class="eyebrow" id="sheetEyebrow"></p>
+  <h2 class="sheet-title" id="sheetTitle">Day 1</h2>
+  <p class="sheet-sub" id="sheetSub"></p>
+  <div class="day-notice" id="dayNotice" hidden></div>
+  <div class="done-banner" id="doneBanner" hidden>
+    <span class="done-banner-mark" aria-hidden="true">✦</span>
+    <span>Day complete. That is how streaks are built.</span>
+  </div>
+  <div class="task-list" id="taskList"></div>
+  <div class="reflection">
+    <label for="reflection"><span id="noteLabelText">A note to your future self</span></label>
+    <textarea id="reflection" placeholder="How did today feel? What did you learn?"></textarea>
+  </div>
+  <div class="photo-block" id="photoBlock">
+    <span class="photo-label">Progress photo (optional)</span>
+    <div class="photo-row">
+      <div class="photo-preview" id="photoPreview" hidden>
+        <img id="photoImage" alt="">
+      </div>
+      <div class="photo-actions">
+        <button class="quiet-button small" type="button" id="photoAdd">Add photo</button>
+        <button class="text-button danger" type="button" id="photoRemove" hidden>Remove</button>
+        <span class="photo-hint" id="photoHint">Stored on this device only.</span>
+      </div>
+    </div>
+    <input type="file" id="photoInput" accept="image/*" hidden>
+  </div>
+  <div class="sheet-foot">
+    <span>Notes save as you write</span>
+    <span id="completionMessage" class="done-message" aria-live="polite"></span>
+  </div>
+</section>
+
+<section class="confirm" id="confirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-hidden="true" tabindex="-1">
+  <h2 id="confirmTitle">Start over?</h2>
+  <p id="confirmBody">A new challenge replaces this log on this device. Logged days cannot be recovered.</p>
+  <div class="confirm-actions">
+    <button class="quiet-button" type="button" id="confirmCancel">Cancel</button>
+    <button class="save-button" type="button" id="confirmGo">Start over</button>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+</body>
+</html>
