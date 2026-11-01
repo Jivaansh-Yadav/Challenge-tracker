@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=blur&color=0:08090d,60:1b1508,100:ffc34e&height=240&section=header&text=Challenge%20Tracker&fontSize=60&fontColor=f3f1f4&fontAlignY=40&desc=Plan%20a%20daily%20challenge.%20Keep%20the%20streak.&descSize=18&descAlignY=62&animation=twinkling" alt="Challenge Tracker" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:08090d,60:1b1508,100:ffc34e&height=240&section=header&text=Challenge%20Tracker&fontSize=58&fontColor=f5f2e8&fontAlignY=42&desc=Plan%20a%20daily%20challenge.%20Keep%20the%20streak.&descSize=18&descAlignY=63&animation=twinkling" alt="Challenge Tracker" width="100%">
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=19&duration=3200&pause=900&color=ffc34e&center=true&vCenter=true&width=680&lines=75+Hard+or+something+entirely+yours;Define+the+rules+that+make+a+day+count;Check+in%2C+tick+the+boxes%2C+watch+the+wall+fill;Streaks%2C+notes+and+progress+photos" alt="Typing animation" />
 
