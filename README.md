@@ -57,22 +57,11 @@ It is deliberately narrow. There is no feed, no social layer, no gamified point 
 
 </div>
 
-<table>
-<tr>
-<td align="center" width="33%">
-<h3>1 · Write it</h3>
-<p>Name the challenge, pick a start date and a length. Add your daily rules one by one, each with a short line of instructions so future-you knows exactly what counts.</p>
-</td>
-<td align="center" width="33%">
-<h3>2 · Start from a preset</h3>
-<p>Four rule libraries arrive with their own guidance: <b>75 Hard classic</b>, <b>75 Soft</b>, <b>Morning reset</b>, <b>Momentum 30</b>. Load one, then edit anything.</p>
-</td>
-<td align="center" width="33%">
-<h3>3 · Check in daily</h3>
-<p>One large check-in button jumps to today. Tick the rules, add a note, optionally attach a progress photo, and finish the day with a confetti pop.</p>
-</td>
-</tr>
-</table>
+<ol>
+<li><b>Write it.</b> Name the challenge, pick a start date and a length from 1 to 365 days. Add each daily rule with a short line of instructions, so future-you knows exactly what counts.</li>
+<li><b>Or load a preset.</b> Four rule libraries arrive with their own guidance — <b>75 Hard classic</b>, <b>75 Soft</b>, <b>Morning reset</b>, <b>Momentum 30</b> — and every loaded rule stays editable afterwards.</li>
+<li><b>Check in daily.</b> One large button jumps straight to today. Tick the rules, add a note, optionally attach a progress photo, and finish the day with a confetti pop.</li>
+</ol>
 
 <div align="center">
 
@@ -80,26 +69,14 @@ It is deliberately narrow. There is no feed, no social layer, no gamified point 
 
 </div>
 
-<table>
-<tr>
-<td width="50%" valign="top">
-<h3>Heatmap wall of days</h3>
-<p>Every day of the challenge as a tile, coloured <b>complete</b>, <b>in progress</b>, <b>upcoming</b> or <b>missed</b>. Tap any tile to open that day.</p>
-<h3>Streak and completion counters</h3>
-<p>A live day streak plus total days completed, with a progress bar and a percentage for the whole run.</p>
-<h3>Per-day notes</h3>
-<p>A short journal entry per day. Notes stay writable even after a day is locked, because the writing is the part worth keeping.</p>
-</td>
-<td width="50%" valign="top">
-<h3>Progress photos</h3>
-<p>Attach one photo per day, downscaled in the browser before it is stored. Stored alongside the note, never uploaded anywhere.</p>
-<h3>Day lifecycle rules</h3>
-<p>Days cannot be ticked before they begin, stay editable for a 24 hour grace window after they end, then freeze their checkboxes while keeping the note.</p>
-<h3>Quotes and guidance</h3>
-<p>A hundred short lines on showing up, rotated so the same one does not greet you twice. Plus five habits for surviving a bad week.</p>
-</td>
-</tr>
-</table>
+<ul>
+<li><b>Heatmap wall of days</b> — every day of the challenge as a tile, coloured <b>complete</b>, <b>in progress</b>, <b>upcoming</b> or <b>missed</b>. Open any tile to see that day.</li>
+<li><b>Streak and completion counters</b> — a live day streak and a total of days completed, with a progress bar and a percentage for the whole run.</li>
+<li><b>Per-day notes</b> — a short journal entry per day that stays writable even after the day is locked, because the writing is the part worth keeping.</li>
+<li><b>Progress photos</b> — one optional photo per day, downscaled in the browser before storage and never uploaded anywhere.</li>
+<li><b>Day lifecycle rules</b> — days cannot be ticked before they begin, stay editable through a 24 hour grace window, then freeze their checkboxes while keeping the note.</li>
+<li><b>Quotes and guidance</b> — a hundred short lines on showing up, rotated so the same one does not greet you twice, plus five habits for surviving a bad week.</li>
+</ul>
 
 ---
 
